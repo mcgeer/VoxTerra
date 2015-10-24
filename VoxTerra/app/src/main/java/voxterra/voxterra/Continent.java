@@ -41,7 +41,10 @@ public class Continent {
     public int getTemperature(){
         return this.temperature;
     }
-
+    public int getMAX_WATER_LEVEL(){
+        return this.MAX_WATER_LEVEL;
+    }
+    
     public double getGrowth(){
         return this.growth;
     }
