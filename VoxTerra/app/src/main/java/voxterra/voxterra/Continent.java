@@ -4,6 +4,7 @@ package voxterra.voxterra;
  * Created by riley_000 on 2015-10-24.
  */
 public class Continent {
+    private final String  name;
     private long    population;
     private long    emissions;
     private double  growth;
@@ -12,16 +13,21 @@ public class Continent {
     private double  relations; //Percent relations with countries
     private double  stability; //Percent political stability of the countries in the continent
 
-    public Continent(long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability){
+    public Continent(String name, long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability){
+        this.name           = name;
         this.population     = population;
         this.emissions      = emissions;
         this.growth         = growth;
-        this.fresh_water     = fresh_water;
+        this.fresh_water    = fresh_water;
         this.temperature    = temperature;
         this.relations      = relations;
         this.stability      = stability;
     }
     //===================Setter Methods===================//
+    public String getName(){
+        return this.name;
+    }
+
     public long getPopulation(){
         return this.population;
     }
