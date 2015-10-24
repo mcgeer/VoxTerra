@@ -1,42 +1,56 @@
 package voxterra.voxterra;
 
 public class Sim {
-    private long globalPopulation;
+    private long global_population;
 
     //Declare the continents
     private int num_continents = 7;
-    private Continent[] continents = new Continent[num_continents];
+    private Continent [] continents;
+
+    //String name, long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability
+    continents = [Continent("North America",5287582631,6. 672 919 291,5,0.007,0.98,)
+
+
+
+
+
+
+
+    ]
 
     //Global variables
-    private long co2_original = 100; //CHANGE THIS VALUE
+    private long co2_original = 100000; //CHANGE THIS VALUE
     private long co2 = co2_original;
 
-    private long temperature_original = 0;
+    private int temperature_original = 10; //CHANGE THIS VALUE
 
     //Getters
-    private long getWaterLevel(){
+    public long getWaterLevel(){
 
     }
 
-    private int getTemperature(){
+    public int getTemperature(){
         //Calculated from c02
 
-        /*Temperture goes up 2 degress for double C02!
-
-        "...the last IPCC report (AR4) described the likely range as between 2 and 4.5 degrees C,
-        for double the amount of CO2 compared to pre-industrial levels."
-        (https://www.skepticalscience.com/co2-temperature-correlation.htm) */
+        //NEED TO RECONSIDER THIS FORMULA
+        return (int) (co2*0.0001);
     }
 
-    private long getNews(){
+    public String getNews(){
 
     }
 
-    private long getCo2(){
-        return co2;
+    public long getCo2(){return co2;}
+
+    public long getPopulation(){
+        global_population=0;
+        for (int i=0;i<num_continents;i++){
+            global_population+=continents[i].getPopulation();
+        }
+        return global_population;
     }
 
-    private Continent getContinentStat(String name){
+    public Continent getContinentStat(String name){
         for (int i=0;i<num_continents;i++){
             if (continents[i].name == name){
                 return continents[i];
