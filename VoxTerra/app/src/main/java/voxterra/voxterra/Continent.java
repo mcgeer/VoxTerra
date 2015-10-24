@@ -88,13 +88,16 @@ public class Continent {
         this.stability = stability;
     }
 
-    public void updateGrowth{
-        growth = 0.4*(this.fresh_water - 0.5) +0.4*(this.stability -0.5) + 0.2 *()
+    public void updateGrowth(long max_emissions){
+        double emissions_ratio = this.emissions/max_emissions;
+        if(emissions_ratio > 1.0){ emissions_ratio = 1.0;}
+        else if(emissions_ratio < - 1.0){emissions_ratio = -1.0;}
+        this.growth = (0.4 * (this.fresh_water - 0.5)) + (0.4 * (this.stability - 0.5)) + (0.2 * (emissions_ratio - 0.2));
     }
     //====================State Methods====================//
     public boolean isFlooding(int water_level){
         return (water_level > this.MAX_WATER_LEVEL);
-    }
+
 
     public boolean isDrought(){
         return (this.fresh_water < 0.20);
