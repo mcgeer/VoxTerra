@@ -1,5 +1,8 @@
 package voxterra.voxterra;
 
+/**
+ * Used to simulate the planet and is the backbone to the whole program
+ */
 public class Sim {
     private static long global_population;
 
