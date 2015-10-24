@@ -14,6 +14,9 @@ public class Continent {
     private double      relations; //Percent relations with countries
     private double      stability; //Percent political stability of the countries in the continent
 
+    private boolean     is_flooding;
+    private boolean     is_drought;
+    
     public Continent(String name, long population, long emissions, int temperature, int MAX_WATER_LEVEL, double fresh_water ,double growth,  double relations, double stability){
         this.name           = name;
         this.population     = population;
@@ -24,6 +27,9 @@ public class Continent {
         this.temperature    = temperature;
         this.relations      = relations;
         this.stability      = stability;
+
+        this.is_drought     = false;
+        this.is_flooding    = false;
     }
     //===================Setter Methods===================//
     public String getName(){
@@ -59,6 +65,14 @@ public class Continent {
 
     public double getStability(){
         return this.stability;
+    }
+
+    public boolean getIsDrought(){
+        return this.is_drought;
+    }
+
+    public boolean getIsFlooding(){
+        return this.is_flooding;
     }
 
     //===================Setter Methods===================//
@@ -99,11 +113,11 @@ public class Continent {
     }
     //====================State Methods====================//
     public boolean isFlooding(int water_level){
-        return (water_level > this.MAX_WATER_LEVEL);
+        this.is_flooding = (water_level > this.MAX_WATER_LEVEL);
 
 
     public boolean isDrought(){
-        return (this.fresh_water < 0.20);
+        this.is_drought = (this.fresh_water < 0.20);
     }
 
 }
