@@ -5,8 +5,6 @@ public class Sim {
     //Declare the continents
     private long[] continents = new long[7];
 
-    //Declare the news stream
-    private NewsStream newsStream = new NewsStream();
+    //Getters
 
-    //Get
 }
