@@ -8,41 +8,33 @@ public class Sim {
     private Continent [] continents;
 
     //String name, long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability
-    continents = [Continent("North America",5287582631,6. 672 919 291,5,0.007,0.98,)
-
-
-
-
-
-
-
-    ]
+    continents = [new Continent("North America",5287582631,6672919291,5,6,0.007,0.98,0.7,0.98)];
 
     //Global variables
     private long co2_original = 100000; //CHANGE THIS VALUE
     private long co2 = co2_original;
 
-    private int temperature_original = 10; //CHANGE THIS VALUE
+    private int temperature_original = 6; //CHANGE THIS VALUE
 
     //Getters
-    public long getWaterLevel(){
+    public static long getWaterLevel(){
 
     }
 
-    public int getTemperature(){
+    public static int getTemperature(){
         //Calculated from c02
 
         //NEED TO RECONSIDER THIS FORMULA
         return (int) (co2*0.0001);
     }
 
-    public String getNews(){
+    public static String getNews(){
 
     }
 
-    public long getCo2(){return co2;}
+    public static long getCo2(){return co2;}
 
-    public long getPopulation(){
+    public static long getPopulation(){
         global_population=0;
         for (int i=0;i<num_continents;i++){
             global_population+=continents[i].getPopulation();
@@ -50,7 +42,7 @@ public class Sim {
         return global_population;
     }
 
-    public Continent getContinentStat(String name){
+    public static Continent getContinentStat(String name){
         for (int i=0;i<num_continents;i++){
             if (continents[i].name == name){
                 return continents[i];

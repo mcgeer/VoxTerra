@@ -5,19 +5,21 @@ package voxterra.voxterra;
  */
 public class Continent {
     private final String  name;
-    private long    population;
-    private long    emissions;
-    private double  growth;
-    private double  fresh_water; //Percentage
-    private int     temperature;
-    private double  relations; //Percent relations with countries
-    private double  stability; //Percent political stability of the countries in the continent
+    private long        population;
+    private long        emissions;
+    private int         temperature;
+    private final int   MAX_WATER_LEVEL;
+    private double      fresh_water; //Percentage
+    private double      growth;
+    private double      relations; //Percent relations with countries
+    private double      stability; //Percent political stability of the countries in the continent
 
-    public Continent(String name, long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability){
+    public Continent(String name, long population, long emissions, int temperature, int MAX_WATER_LEVEL, double fresh_water ,double growth,  double relations, double stability){
         this.name           = name;
         this.population     = population;
         this.emissions      = emissions;
         this.growth         = growth;
+        this.MAX_WATER_LEVEL = MAX_WATER_LEVEL;
         this.fresh_water    = fresh_water;
         this.temperature    = temperature;
         this.relations      = relations;
@@ -84,6 +86,18 @@ public class Continent {
 
     public void setStability(double stability){
         this.stability = stability;
+    }
+
+    public void updateGrowth{
+        growth = 0.4*(this.fresh_water - 0.5) +0.4*(this.stability -0.5) + 0.2 *()
+    }
+    //====================State Methods====================//
+    public boolean isFlooding(int water_level){
+        return (water_level > this.MAX_WATER_LEVEL);
+    }
+
+    public boolean isDrought(){
+        return (this.fresh_water < 0.20);
     }
 
 }
