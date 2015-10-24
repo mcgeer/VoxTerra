@@ -1,7 +1,7 @@
 package voxterra.voxterra;
 
 /**
- *
+ *Sets up continents and their variables
  */
 public class Continent {
     private final String  name;
