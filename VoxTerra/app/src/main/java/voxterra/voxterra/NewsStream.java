@@ -11,32 +11,34 @@ public class NewsStream {
     //private int eventCooldown = 0;
 
 
-    public ArrayList<String[]> getNews(){
+    public ArrayList<String[]> retrieveNews(){
 
         ArrayList<String[]> recentNews = new ArrayList<String[]>();
 
         String[] event = new String[3];  //location, description, time occurred
 
-        for (int i = 0;i < continentNames.length; i++)      //per-continent events
+        for (int i = 0;i < Sim.continentNames.length; i++)      //per-continent events
         {
-            String name = continentNames[i];
+            String name = Sim.continentNames[i];
 
-            if (getContinent(name).getWaterThreshold() < getWaterLevel()&& !getContinent(continentNames[i]).isFlooding)  //Adds flooding
+            if (Sim.getContinentStat(name).getWaterThreshold() < Sim.getWaterLevel()&& !Sim.getContinentStat(name).isFlooding)  //Adds flooding
             {
-                event = {name, "Flooding occurs in "+name, Str(getTime())};
+                event = {name, "Flooding occurs in "+name, Str(Sim.getTime())};
 
-                getContinent(name).stateFlooding = True;
+                Sim.getContinentStat(name).stateFlooding = True;
 
                 recentNews.add(event);
 
-            } else if(getContinent(name).getWaterThreshold() > getWaterLevel()&& getContinent(continentNames[i]).isFlooding)//removes flooding
+            } else if(Sim.getContinentStat(name).getWaterThreshold() > Sim.getWaterLevel()&& Sim.getContinentStat(name).isFlooding)//removes flooding
             {
-                event = {name, "Flooding stops in "+name, Str(getTime())};
+                event = {name, "Flooding stops in "+name, Str(Sim.getTime())};
 
-                getContinent(name).stateFlooding = False;
+                Sim.getContinentStat(name).stateFlooding = False;
 
                 recentNews.add(event);
             }
+
+            if (getContinent)
 
         }
 
