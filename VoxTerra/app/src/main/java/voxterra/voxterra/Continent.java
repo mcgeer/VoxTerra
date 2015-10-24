@@ -1,7 +1,7 @@
 package voxterra.voxterra;
 
 /**
- * Created by riley_000 on 2015-10-24.
+ *
  */
 public class Continent {
     private final String  name;
@@ -62,7 +62,6 @@ public class Continent {
         this.population = population;
     }
 
-
     public void setEmissions(long emissions){
         this.emissions = emissions;
     }
@@ -86,4 +85,5 @@ public class Continent {
     public void setStability(double stability){
         this.stability = stability;
     }
+
 }
