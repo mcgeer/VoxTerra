@@ -88,6 +88,9 @@ public class Continent {
         this.stability = stability;
     }
 
+    public void updateGrowth{
+        growth = 0.4*(this.fresh_water - 0.5) +0.4*(this.stability -0.5) + 0.2 *()
+    }
     //====================State Methods====================//
     public boolean isFlooding(int water_level){
         return (water_level > this.MAX_WATER_LEVEL);
@@ -96,4 +99,5 @@ public class Continent {
     public boolean isDrought(){
         return (this.fresh_water < 0.20);
     }
+
 }
