@@ -16,7 +16,7 @@ public class Continent {
 
     private boolean     is_flooding;
     private boolean     is_drought;
-    
+
     public Continent(String name, long population, long emissions, int temperature, int MAX_WATER_LEVEL, double fresh_water ,double growth,  double relations, double stability){
         this.name           = name;
         this.population     = population;
