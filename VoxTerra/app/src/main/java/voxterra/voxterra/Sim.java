@@ -7,7 +7,7 @@ public class Sim {
     private int num_continents = 7;
 
     //String name, long population,long emissions, int temperature, double growth, double fresh_water, double relations, double stability
-    Continent[] continents = [new Continent("North America",5287582631,6672919291,5,6,0.007,0.98,0.7,0.98)];
+    Continent[] continents = {new Continent("North America",5287582631L,6672919291L,5,6,0.007,0.98,0.7,0.98)};
 
     //Global variables
     private long co2_original = 100000; //CHANGE THIS VALUE
