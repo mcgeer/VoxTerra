@@ -1,15 +1,17 @@
+package voxterra.voxterra;
+
 public class Sim {
     private long globalPopulation;
 
     //Declare the continents
-    private num_continents = 7;
-    private long[] continents = new long[num_continents];
+    private int num_continents = 7;
+    private Continent[] continents = new Continent[num_continents];
 
     //Global variables
     private long co2_original = 100; //CHANGE THIS VALUE
     private long co2 = co2_original;
 
-    private long temperature_original =
+    private long temperature_original = 0;
 
     //Getters
     private long getWaterLevel(){
@@ -34,11 +36,11 @@ public class Sim {
         return co2;
     }
 
-    private long getWaterLevel(){
-
-    }
-
-    private Continent getContinentStat(name){
-
+    private Continent getContinentStat(String name){
+        for (int i=0;i<num_continents;i++){
+            if (continents[i].name == name){
+                return continents[i];
+            }
+        }
     }
 }
