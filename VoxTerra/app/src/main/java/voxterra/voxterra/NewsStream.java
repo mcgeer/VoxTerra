@@ -19,26 +19,32 @@ public class NewsStream {
 
         for (int i = 0;i < Sim.continentNames.length; i++)      //per-continent events
         {
-            String name = Sim.continentNames[i];
+            Continent selectedContinent = Sim.getContinent(Sim.continentNames[i]);
 
-            if (Sim.getContinentStat(name).getWaterThreshold() < Sim.getWaterLevel()&& !Sim.getContinentStat(name).isFlooding)  //Adds flooding
+            if (selectedContinent.getMAX_WATER_LEVEL() < Sim.getWaterLevel()&& !selectedContinent.isFlooding(Sim.getWaterLevel()))  //Adds flooding
             {
                 event = {name, "Flooding occurs in "+name, Str(Sim.getTime())};
-
-                Sim.getContinentStat(name).stateFlooding = True;
-
+                selectedContinent.isFlooding = true;
                 recentNews.add(event);
 
-            } else if(Sim.getContinentStat(name).getWaterThreshold() > Sim.getWaterLevel()&& Sim.getContinentStat(name).isFlooding)//removes flooding
+            } else if(selectedContinent.getMAX_WATER_LEVEL() >= Sim.getWaterLevel()&& selectedContinent.isFlooding(Sim.getWaterLevel()))//removes flooding
             {
                 event = {name, "Flooding stops in "+name, Str(Sim.getTime())};
-
-                Sim.getContinentStat(name).stateFlooding = False;
-
+                selectedContinent.isFlooding = false;
                 recentNews.add(event);
             }
 
-            if (getContinent)
+            if (selectedContinent.getFreshWater()<0.2 && !selectedContinent.isDrought)
+            {
+                event = {name, name+" experiences drough across the land", Str(Sim.getTime())};
+                selectedContinent.isDrought = true;
+                recentNews.add(event);
+            } else if(selectedContinent.getFreshWater()>=0.2 && selectedContinent.isDrought)
+            {
+                event = {name, name+"'s drought comes to an end", Str(Sim.getTime())};
+                selectedContinent.isDrought = false;
+                recentNews.add(event);
+            }
 
         }
 
