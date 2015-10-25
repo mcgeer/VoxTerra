@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">VoxTerra</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="btn_Relations">Relation</string>>
+    <string name="btn_stats">Stats</string>>
+    <string name="btn_upgrd">Upgrades</string>>
+    <string name="btn_home">Back</string>
+
+    <string name="txt_worldnews">World News:</string>
+
+    <string name="title_activity_main">MainActivity</string>
 </resources>
