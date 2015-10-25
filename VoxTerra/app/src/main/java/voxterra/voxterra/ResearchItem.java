@@ -1,11 +1,11 @@
 package voxterra.voxterra;
 
 /**
- *
+ * Holds Instances for research items
  */
 public class ResearchItem {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     private long cost;
     private boolean unlocked;
@@ -23,6 +23,7 @@ public class ResearchItem {
         this.result_items   = result_items;
     }
 
+    //===================Getter Methods===================//
     public String getName(){
         return this.name;
     }
@@ -35,15 +36,32 @@ public class ResearchItem {
         return this.cost;
     }
 
-
     public boolean isUnlocked() {
         return this.unlocked;
+    }
+
+    public boolean isPurchased() {
+        return this.purchased;
+    }
+
+    public ResearchItem[] getChild_items(){
+        return this.child_items;
+    }
+
+    public ShopItem[] getResult_items(){
+        return this.result_items;
+    }
+
+    //===================Setter Methods===================//
+    public void setCost(long cost) {
+        this.cost = cost;
     }
 
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;
     }
 
+    //====================State Methods===================//
     public void purchaseReseach(){
         if(this.unlocked && !this.purchased){
             this.purchased = true;

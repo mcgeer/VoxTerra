@@ -31,7 +31,7 @@ public class Continent {
         this.is_drought     = false;
         this.is_flooding    = false;
     }
-    //===================Setter Methods===================//
+    //===================Getter Methods===================//
     public String getName(){
         return this.name;
     }
@@ -47,6 +47,7 @@ public class Continent {
     public int getTemperature(){
         return this.temperature;
     }
+
     public int getMAX_WATER_LEVEL(){
         return this.MAX_WATER_LEVEL;
     }
@@ -111,13 +112,17 @@ public class Continent {
         else if(emissions_ratio < - 1.0){emissions_ratio = -1.0;}
         this.growth = (0.4 * (this.fresh_water - 0.5)) + (0.4 * (this.stability - 0.5)) + (0.2 * (emissions_ratio - 0.2));
     }
+
     //====================State Methods====================//
-    public boolean isFlooding(int water_level){
+    public boolean isFlooding(int water_level) {
         this.is_flooding = (water_level > this.MAX_WATER_LEVEL);
+        return this.is_flooding;
+    }
 
 
     public boolean isDrought(){
         this.is_drought = (this.fresh_water < 0.20);
+        return this.is_drought;
     }
 
 }

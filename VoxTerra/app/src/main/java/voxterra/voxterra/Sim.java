@@ -5,10 +5,8 @@ package voxterra.voxterra;
  */
 public class Sim {
     private static long global_population;
-
     //Declare the continents
     private static int num_continents = 7;
-
     //String name, long population,long emissions, int temperature, int MAX_WATER_LEVEL, double growth, double fresh_water, double relations, double stability
     private static Continent[] continents = {new Continent("North America",5287582631L,6672919291L,5,6,0.007,0.98,0.7,0.98)};
 
