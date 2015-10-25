@@ -1,5 +1,8 @@
 package voxterra.voxterra;
 
+/**
+ * Used to simulate the planet and is the backbone to the whole program
+ */
 public class Sim {
     private static long global_population;
 
@@ -30,7 +33,7 @@ public class Sim {
     }
 
     public static String getNews(){
-        return NewsStream.receiveNews();
+        return NewsStream.retrieveNews();
     }
 
     public static long getCo2(){return co2;}
@@ -45,7 +48,7 @@ public class Sim {
 
     public static Continent getContinent(String name){
         for (int i=0;i<num_continents;i++){
-            if (continents[i].name == name){
+            if (continents[i].getName() == name){
                 return continents[i];
             }
         }
