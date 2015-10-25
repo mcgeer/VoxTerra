@@ -3,49 +3,60 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by riley_000 on 2015-10-24.
+ * Created by smiley_000 on 2015-10-24.
  */
 public class NewsStream {
 
     private ArrayList<String[]> eventHistory = new ArrayList<String[]>();
     //private int eventCooldown = 0;
 
+    public enum eventType{
+        nothing, oilspill, forestFire,
+    }
 
     public ArrayList<String[]> retrieveNews(){
 
-        ArrayList<String[]> recentNews = new ArrayList<String[]>();
+        ArrayList<WorldEvent> recentNews = new ArrayList<WorldEvent>();
 
-        String[] event = new String[3];  //location, description, time occurred
+        WorldEvent event;  //location, description, time occurred
 
         for (int i = 0;i < Sim.continentNames.length; i++)      //per-continent events
         {
             Continent selectedContinent = Sim.getContinent(Sim.continentNames[i]);
-
+            String name = Sim.continentNames[i];
             if (selectedContinent.getMAX_WATER_LEVEL() < Sim.getWaterLevel()&& !selectedContinent.isFlooding(Sim.getWaterLevel()))  //Adds flooding
             {
-                event = {name, "Flooding occurs in "+name, Str(Sim.getTime())};
+                event = new WorldEvent(name, "Flooding occurs in "+name, Sim.getTime(), eventType.nothing);
                 selectedContinent.isFlooding = true;
                 recentNews.add(event);
 
             } else if(selectedContinent.getMAX_WATER_LEVEL() >= Sim.getWaterLevel()&& selectedContinent.isFlooding(Sim.getWaterLevel()))//removes flooding
             {
-                event = {name, "Flooding stops in "+name, Str(Sim.getTime())};
+                event = new WorldEvent(name, "Flooding stops in "+name, Sim.getTime(), eventType.nothing);
                 selectedContinent.isFlooding = false;
                 recentNews.add(event);
             }
 
             if (selectedContinent.getFreshWater()<0.2 && !selectedContinent.isDrought)
             {
-                event = {name, name+" experiences drough across the land", Str(Sim.getTime())};
+                event = WorldEvent(name, name + " experiences drough across the land", Sim.getTime(), eventType.nothing);
                 selectedContinent.isDrought = true;
                 recentNews.add(event);
             } else if(selectedContinent.getFreshWater()>=0.2 && selectedContinent.isDrought)
             {
-                event = {name, name+"'s drought comes to an end", Str(Sim.getTime())};
+                event = WorldEvent(name, name + "'s drought comes to an end", Sim.getTime(), eventType.nothing);
                 selectedContinent.isDrought = false;
                 recentNews.add(event);
             }
 
+        }
+
+        if(randInt(0, 19)==1){      //oilspill random disaster event
+            event = {"Ocean", "ALERT: OILSPILL IN ", Str(Sim.getTime()), eventType.oilspill};
+            recentNews.add(event);
+
+            //if (pressed)
+            eventResponse(event[3]);
         }
 
         eventHistory.addAll(recentNews);
@@ -56,4 +67,19 @@ public class NewsStream {
         return Min + (int)(Math.random() * ((Max - Min) + 1));
     }
 
+
+    /**
+     * Call if player presses a high severity event
+     *
+     */
+    public void eventResponse(WorldEvent event){
+
+        switch (event.severity){
+
+            case oilspill:
+                //prompts action from player
+                //lists options for player to choose (or ignore)
+        }
+
+    }
 }
