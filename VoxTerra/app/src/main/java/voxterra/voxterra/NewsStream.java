@@ -24,13 +24,13 @@ public class NewsStream {
         {
             Continent selectedContinent = Sim.getContinent(Sim.continentNames[i]);
             String name = Sim.continentNames[i];
-            if (selectedContinent.getMAX_WATER_LEVEL() < Sim.getWaterLevel()&& !selectedContinent.isFlooding(Sim.getWaterLevel()))  //Adds flooding
+            if (selectedContinent.getMAX_WATER_LEVEL() < Sim.getCurrentWaterLevel()&& !selectedContinent.isFlooding(Sim.getCurrentWaterLevel()))  //Adds flooding
             {
                 event = new WorldEvent(name, "Flooding occurs in "+name, Sim.getTime(), eventType.nothing);
                 selectedContinent.isFlooding = true;
                 recentNews.add(event);
 
-            } else if(selectedContinent.getMAX_WATER_LEVEL() >= Sim.getWaterLevel()&& selectedContinent.isFlooding(Sim.getWaterLevel()))//removes flooding
+            } else if(selectedContinent.getMAX_WATER_LEVEL() >= Sim.getCurrentWaterLevel()&& selectedContinent.isFlooding(Sim.getCurrentWaterLevel()))//removes flooding
             {
                 event = new WorldEvent(name, "Flooding stops in "+name, Sim.getTime(), eventType.nothing);
                 selectedContinent.isFlooding = false;
