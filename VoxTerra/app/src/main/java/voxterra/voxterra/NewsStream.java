@@ -3,22 +3,38 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by smiley_000 on 2015-10-24.
+ * Created by simon on 2015-10-24.
  */
 public class NewsStream {
 
-    private ArrayList<String[]> eventHistory = new ArrayList<String[]>();
+    private boolean firstRun = true;
+
+    private ArrayList<WorldEvent> eventHistory = new ArrayList<WorldEvent>();
     //private int eventCooldown = 0;
 
+
+    /**
+     * nothing: no popup (i.e. unimportant events w/o consequence)
+     * announcement: popup with just an "ok" button
+     * everything else: popup with different buttons representing responses to situation (all should also have an "ignore" option as well)
+     *
+     */
     public enum eventType{
-        nothing, oilspill, forestFire,
+        nothing,  announcement,
+        oilspill, chemicalLeak, nuclearPowerPlantFailure, 
     }
 
-    public ArrayList<String[]> retrieveNews(){
+    public ArrayList<WorldEvent> retrieveNews(){
 
         ArrayList<WorldEvent> recentNews = new ArrayList<WorldEvent>();
 
         WorldEvent event;  //location, description, time occurred
+
+        if(firstRun)
+        {
+            event = new WorldEvent("Earth", "BY JOVE WE'VE DONE IT", 0, eventType.announcement);
+            firstRun = false;
+        }
 
         for (int i = 0;i < Sim.continentNames.length; i++)      //per-continent events
         {
@@ -56,7 +72,7 @@ public class NewsStream {
             recentNews.add(event);
 
             //if (pressed)
-            eventResponse(event[3]);
+            eventResponse(event);
         }
 
         eventHistory.addAll(recentNews);
