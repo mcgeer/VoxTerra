@@ -24,11 +24,11 @@ public class Sim {
     private static int water_level = 0;
 
     //======================GETTER METHODS======================//
-    public long getMoney(){
+    public static long getMoney(){
         return this.user_money;
     }
 
-    public long getWeekly_income() {return this.weekly_income;}
+    public static long getWeekly_income() {return this.weekly_income;}
 
     public static int getCurrentWaterLevel(){
         return water_level;
@@ -65,21 +65,22 @@ public class Sim {
         return null;
     }
     //======================SETTER METHODS======================//
-    private void setWeeklyIncome(long weekly_income){
+    private static void setWeeklyIncome(long weekly_income){
         this.weekly_income = weekly_income;
     }
 
-    private void increaseMoney(long money){
+    private static void increaseMoney(long money){
         this.user_money += money;
     }
 
-    private void decreaseMoney(long money){
+    private static void decreaseMoney(long money){
         this.user_money -= money;
     }
     //======================STATE METHODS=======================//
 
-   public void SimulateWeek(){
+   public static void SimulateWeek(){
         //This needs to be called ever week, Make a timer for this say 5 seconds for test 30 seconds for game
+        //A timer will be initialized in an init function, prior to this all continents and stuff will be init
         //Pause timer before calling this
         //Get the news and allow actions on it
         String WeeklyNews = getNews();
@@ -94,7 +95,7 @@ public class Sim {
             //update_cont.setRelations();   //Wont always change
             //update_cont.setStability();   //Wont always change
             update_cont.setTemperature(getCurrentTemperature()); //Will always change
-            //update_cont.updateGrowth();   //Will always change
+            //update_cont.updateGrowth();   //Will always change must be last to change! Relies on values above
         }
 
         //Increase money based on funding for environment and donations
